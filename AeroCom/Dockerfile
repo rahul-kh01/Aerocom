@@ -1,18 +1,26 @@
-# Use a base image with JDK 17
-FROM eclipse-temurin:17-jdk-alpine
+# Use an official OpenJDK image as a base
+FROM openjdk:22-jdk-alpine
 
-# Set the working directory inside the container
+# Set the working directory in the container
 WORKDIR /app
 
-# Copy the Maven build files (pom.xml and dependencies) to the working directory
-COPY pom.xml .
+# Copy the Maven wrapper and pom.xml to the container
+COPY mvnw mvnw.cmd pom.xml ./
+
+# Copy the .mvn directory as well
+COPY .mvn .mvn
+
+# Download the project dependencies using Maven
+RUN ./mvnw dependency:go-offline
+
+# Copy the source code to the container
 COPY src ./src
 
-# Package the application using Maven
+# Build the application using Maven
 RUN ./mvnw clean package -DskipTests
 
-# Expose the port your app will run on
+# Expose the port on which the application will run
 EXPOSE 1030
 
-# Run the packaged Spring Boot app
-CMD ["java", "-jar", "target/<your-jar-file>.jar"]
+# Run the Spring Boot application
+CMD ["java", "-jar", "target/<your-app-name>.jar"]
