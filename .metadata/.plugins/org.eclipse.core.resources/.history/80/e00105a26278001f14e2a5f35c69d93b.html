@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>AEROCOM - Flight Booking</title>
+    <link rel="stylesheet" th:href="@{/css/home.css}" />
+</head>
+<body>
+   <header>
+   <div class="header-content">
+        <img src="/images/erologo.png" alt="AEROCOM Logo" class="logo" />
+    <div class="header-content">
+        <h1>AEROCOM</h1>
+        <div class="header-buttons">
+            <a href="/login2">Login</a>
+            <a href="/signup">Signup</a>
+            <a href="/customer-service">Customer Service</a>
+        </div>
+    </div>
+    </div>
+</header>
+
+<footer>
+    <p>&copy; 2024 AEROCOM. All Rights Reserved.</p>
+</footer>
+
+    <div class="content-wrapper">
+    <main>
+    <div class="main-body-form">
+        <form action="/search-flights" method="get">
+            <label for="origin">Origin:</label>
+            <select name="origin" id="origin">
+                <!-- Add options dynamically if required -->
+                 <option value="Delhi">Delhi</option>
+                <option value="Mumbai">Mumbai</option>
+                 <option value="Pune">Pune</option>
+                  <option value="Nagpur">Nagpur</option>
+                   <option value="Chennai">Chennai</option>
+                    <option value="Baglore">Baglore</option>
+                     <option value="Goa">Goa</option>
+            </select>
+
+            <label for="destination">Destination:</label>
+            <select name="destination" id="destination">
+                <option value="Mumbai">Mumbai</option>
+                <option value="Delhi">Delhi</option>
+                 <option value="Pune">Pune</option>
+                  <option value="Nagpur">Nagpur</option>
+                   <option value="Chennai">Chennai</option>
+                    <option value="Baglore">Baglore</option>
+                     <option value="Goa">Goa</option>
+            </select>
+
+            <label for="departure">Departure:</label>
+            <input type="date" id="departure" name="departure" />
+
+            <label for="cabinClass">Cabin Class:</label>
+            <select name="cabinClass" id="cabinClass">
+                <option value="economy">Economy</option>
+                <option value="business">Business</option>
+                <option value="first">First Class</option>
+            </select>
+
+            <label for="passengerType">Passenger Type:</label>
+            <select name="passengerType" id="passengerType">
+                <option value="adult">Adult</option>
+                <option value="child">Child</option>
+                <option value="infant">Infant</option>
+            </select>
+        <button onclick="window.location.href='/search-results2'">Search Flighttttt</button>
+            
+            
+        </form>
+        </div>
+    </main>
+    </div>
+</body>
+</html>

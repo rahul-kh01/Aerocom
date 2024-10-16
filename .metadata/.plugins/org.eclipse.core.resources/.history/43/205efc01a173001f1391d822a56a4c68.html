@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>User Profile - AEROCOM</title>
+    <link rel="stylesheet" th:href="@{/css/user.css}" />
+</head>
+<body>
+    <main>
+        <!-- Passenger Details Section -->
+        <section class="passenger-info">
+            <h2>Welcome, <span th:text="${passenger.pname}"></span></h2>
+            <a href="/logout" class="btn logout-button">Logout</a>
+        </section>
+
+        <!-- Navigation Tabs Section -->
+        <section class="user-options">
+            <ul class="tabs">
+                <li><a href="/book-ticket">Book Ticket</a></li>
+                <li><a href="/my-booking">My Booking</a></li>
+                <li><a href="/cancel-ticket">Cancel Ticket</a></li>
+                <li><a href="/ticket-enquiry">Ticket Enquiry</a></li>
+                <li><a href="/faq">FAQ</a></li>
+            </ul>
+        </section>
+    </main>
+</body>
+</html>

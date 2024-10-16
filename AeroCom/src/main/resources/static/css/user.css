@@ -1,0 +1,72 @@
+/* General styling */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+}
+
+.tab-container {
+    width: 60%;
+    margin: 20px auto;
+}
+
+.tab-item {
+    display: flex;
+    margin-bottom: 15px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.tab-left {
+    width: 60px;
+    background-color: #3498db; /* Default color */
+    color: white;
+    text-align: center;
+    font-size: 1.5em;
+    padding: 15px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    border-radius: 10px 0 0 10px;
+}
+
+.tab-right {
+    flex-grow: 1;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.8);
+}
+
+.tab-title {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #2c3e50;
+}
+
+.tab-description {
+    font-size: 0.9em;
+    color: #7f8c8d;
+    margin-top: 5px;
+}
+
+/* Different colors for each tab */
+.tab-item:nth-child(1) .tab-left {
+    background-color: #2980b9;
+}
+
+.tab-item:nth-child(2) .tab-left {
+    background-color: #8e44ad;
+}
+
+.tab-item:nth-child(3) .tab-left {
+    background-color: #16a085;
+}
+
+.tab-item:nth-child(4) .tab-left {
+    background-color: #e67e22;
+}
+
+.tab-item:nth-child(5) .tab-left {
+    background-color: #e74c3c;
+}

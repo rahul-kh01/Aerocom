@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>User Profile</title>
+     <link rel="stylesheet" th:href="@{/css/header-footer.css}" />
+    <link rel="stylesheet" th:href="@{/css/user.css}" />
+</head>
+<body>
+<header th:replace="header-footer :: header"></header>
+    <div class="container">
+        <div class="header-content">
+            <!-- Passenger's Name on the left -->
+            <span class="passenger-name" th:text="'Welcome, ' + ${passenger.pname}"></span>
+
+            <!-- Logout Button on the right -->
+            <a href="/logout" class="logout-button">Logout</a>
+        </div>
+
+        <!-- Tab Section -->
+        <div class="tab-container">
+            <button class="tab-btn">Book Ticket</button>
+            <button class="tab-btn">My Booking</button>
+            <button class="tab-btn">Cancel Ticket</button>
+            <button class="tab-btn">Ticket Enquiry</button>
+            <button class="tab-btn">FAQ</button>
+        </div>
+    </div>
+</body>
+</html>
+

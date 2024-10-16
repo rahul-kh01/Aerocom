@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>My Bookings</title>
+    <link rel="stylesheet" href="/css/success.css">
+    <link rel="stylesheet" th:href="@{/css/header-footer.css}" />
+</head>
+<body>
+ <header th:replace="header-footer :: header"></header>
+    <h1>My Bookings</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Ticket Number</th>
+                <th>Passenger Name</th>
+                <th>Flight Number</th>
+                <th>Seat Number</th>
+                <th>Cabin Class</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="ticket : ${tickets}">
+                 <td th:text="${ticket.name}"></td>
+                <td th:text="${ticket.gender}"></td>
+                <td th:text="${ticket.age}"></td>
+                <td th:text="${ticket.mobileNumber}"></td>
+                <td th:text="${ticket.passengerType}"></td>
+                <td th:text="${ticket.flightNumber}"></td>
+                <td th:text="${ticket.cabinClass}"></td>
+                <td th:text="${ticket.ticketNumber}"></td>
+                <td th:text="${ticket.seatNumber}"></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <button onclick="window.location.href='/dashboard'">Back to Dashboard</button>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Cancel Bookings</title>
+    <link rel="stylesheet" href="/css/success.css">
+    <link rel="stylesheet" th:href="@{/css/header-footer.css}" />
+</head>
+<body>
+ <header th:replace="header-footer :: header"></header>
+    <h1>Cancel Bookings</h1>
+<table>
+    <thead>
+        <tr>
+            <th>Ticket Number</th>
+            <th>Flight Number</th>
+            <th>Seat Number</th>
+            <th>Passenger Name</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr th:each="ticket : ${tickets}">
+            <td th:text="${ticket.ticketNumber}"></td>
+            <td th:text="${ticket.flightNumber}"></td>
+            <td th:text="${ticket.seatNumber}"></td>
+            <td th:text="${ticket.name}"></td>
+            <td>
+                <td>
+    <button th:onclick="'confirmCancelTicket(' + ${ticket.ticketNumber} + ')'" type="button">Cancel</button>
+</td>
+
+            </td>
+        </tr>
+    </tbody>
+</table>
+<button onclick="window.location.href='/user3'">Back to Dashboard</button>
+
+<script>
+function confirmCancelTicket(ticketNumber) {
+    if (confirm("Are you sure you want to cancel this ticket?")) {
+        window.location.href = "/cancel-ticket/" + ticketNumber;
+    }
+}
+
+</script>
+</body>
+</html>

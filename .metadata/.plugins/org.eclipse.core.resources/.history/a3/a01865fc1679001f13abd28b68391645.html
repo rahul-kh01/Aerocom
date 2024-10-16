@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Page Tabs</title>
+    <link rel="stylesheet" href="/css/user.css"> <!-- Link to your custom CSS -->
+    <title>User Profile</title>
+     <link rel="stylesheet" th:href="@{/css/header-footer.css}" />
+    <link rel="stylesheet" th:href="@{/css/user.css}" />
+</head>
+<body>
+<header th:replace="header-footer :: header"></header>
+    <div class="container">
+        <div class="header-content">
+            <!-- Passenger's Name on the left -->
+            <span class="passenger-name" th:text="'Welcome, ' + ${passenger.name}"></span>
+
+            <!-- Logout Button on the right -->
+            <a href="/logout" class="logout-button">Logout</a>
+        </div>
+
+        <!-- Tab Section -->
+        <div class="tab-container">
+        <div class="tab-item">
+            <div class="tab-left">01</div>
+            <div class="tab-right">
+                <div class="tab-title">Book Ticket</div>
+                <div class="tab-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
+            </div>
+        </div>
+        <div class="tab-item">
+            <div class="tab-left">02</div>
+            <div class="tab-right">
+                <div class="tab-title">My Booking</div>
+                <div class="tab-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
+            </div>
+        </div>
+        <div class="tab-item">
+            <div class="tab-left">03</div>
+            <div class="tab-right">
+                <div class="tab-title">Cancel Ticket</div>
+                <div class="tab-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
+            </div>
+        </div>
+        <div class="tab-item">
+            <div class="tab-left">04</div>
+            <div class="tab-right">
+                <div class="tab-title">Ticket Enquiry</div>
+                <div class="tab-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
+            </div>
+        </div>
+        <div class="tab-item">
+            <div class="tab-left">05</div>
+            <div class="tab-right">
+                <div class="tab-title">FAQ</div>
+                <div class="tab-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
+            </div>
+        </div>
+    </div>
+    </div>
+</body>
+</html>
+

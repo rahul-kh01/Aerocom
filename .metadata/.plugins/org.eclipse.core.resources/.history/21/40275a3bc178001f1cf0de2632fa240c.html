@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Signup - AEROCOM</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
+<body>
+    <header>
+        <h1>Signup for AEROCOM</h1>
+        <div class="header-content">
+            <div >
+                <a href="/">Home</a>
+                <a href="/customer-service">Customer Service</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+       <form action="/signup" method="post" th:object="${passenger}">
+    <label for="name">Name:</label>
+    <input type="text" id="name" th:field="*{name}" required>
+    <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</div><br><br>
+    
+    <label for="gender">Gender:</label>
+    <input type="radio" id="male" th:field="*{gender}" value="Male" required> Male
+    <input type="radio" id="female" th:field="*{gender}" value="Female" required> Female
+<br><br>
+    <label for="age">Age:</label>
+    <input type="number" id="age" th:field="*{age}" required><br><br>
+
+    <label for="email">Email:</label>
+    <input type="email" id="email" th:field="*{email}" required><br><br>
+
+    <label for="mobNo">Mobile Number:</label>
+    <input type="tel" id="mobNo" th:field="*{mobNo}" required><br><br>
+
+    <label for="password">Password:</label>
+    <input type="password" id="password" th:field="*{password}" required><br><br>
+
+    <button type="submit">Create Account</button>
+</form>
+
+    </main>
+</body>
+</html>

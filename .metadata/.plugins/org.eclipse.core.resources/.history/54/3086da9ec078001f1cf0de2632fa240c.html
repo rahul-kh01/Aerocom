@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Common Layout</title>
+</head>
+<body>
+    <!-- Define the header fragment -->
+    <div th:fragment="header">
+        <header>
+            <div class="header-content">
+            
+                <h1>AEROCOM </h1>
+                
+                <div class="header-buttons">
+                    <a href="/login">Login</a>
+                    <a href="/signup">Signup</a>
+                    <a href="/customer-service">Customer Service</a>
+                </div>
+            </div>
+        </header>
+    </div>
+
+    <!-- Define the footer fragment -->
+    <div th:fragment="footer">
+        <footer>
+            <p>&copy; 2024 AEROCOM. All Rights Reserved.</p>
+        </footer>
+    </div>
+</body>
+</html>

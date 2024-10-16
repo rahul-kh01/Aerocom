@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Book Ticket</title>
+    <link rel="stylesheet" th:href="@{/css/book-ticket.css}" />
+    <link rel="stylesheet" th:href="@{/css/header-footer.css}" />
+    <script>
+        function addPassenger() {
+            const container = document.getElementById('passenger-entries');
+            const index = container.children.length + 1;
+
+            const passengerDiv = document.createElement('div');
+            passengerDiv.classList.add('passenger-details');
+            passengerDiv.innerHTML = `
+                <h3>Passenger ${index}</h3>
+                <label for="name">Name:</label>
+                <input type="text" name="names" required>
+                
+                <label for="gender">Gender:</label>
+                <select name="gender" required >
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="other">Other</option>
+                </select>
+
+                
+                <label for="age">Age:</label>
+                <input type="number" name="ages" required>
+                
+                <label for="mobile">Mobile Number:</label>
+                <input type="text" name="mobiles" required>
+                
+                <label for="passengerType">Passenger Type:</label>
+                <select name="passengerTypes" required>
+                    <option value="Adult">Adult</option>
+                    <option value="Child">Child</option>
+                    <option value="Infant">Infant</option>
+                </select>
+                
+                <label for="flightNumber">Flight Number:</label>
+                <input type="text" name="flightNumbers" required>
+                
+                <label for="cabinClass">Cabin Class:</label>
+                <select name="cabinClasses" required>
+                    <option value="Economy">Economy</option>
+                    <option value="Business">Business</option>
+                    <option value="First">First</option>
+                </select>
+            `;
+
+            container.appendChild(passengerDiv);
+        }
+    </script>
+</head>
+<body>
+<header th:replace="header-footer :: header"></header>
+    <div class="container">
+        <h2>Book Ticket : </h2>
+        <form action="/book-ticket" method="get">
+            <div id="passenger-entries">
+                <div class="passenger-details">
+                    <h3>Passenger 1</h3>
+                    <label for="name">Name:</label>
+                    <input type="text" name="names" required>
+
+                     <label for="gender">Gender:</label>
+                <select name="gender" required >
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="other">Other</option>
+                </select>
+
+                    <label for="age">Age:</label>
+                    <input type="number" name="ages" required>
+
+                    <label for="mobile">Mobile Number:</label>
+                    <input type="text" name="mobiles" required>
+
+                    <label for="passengerType">Passenger Type:</label>
+                    <select name="passengerTypes" required>
+                        <option value="Adult">Adult</option>
+                        <option value="Child">Child</option>
+                        <option value="Infant">Infant</option>
+                    </select>
+
+                    <label for="flightNumber">Flight Number:</label>
+                    <input type="text" name="flightNumbers" required>
+
+                    <label for="cabinClass">Cabin Class:</label>
+                    <select name="cabinClasses" required>
+                        <option value="Economy">Economy</option>
+                        <option value="Business">Business</option>
+                        <option value="First">First</option>
+                    </select>
+                </div>
+            </div>
+            <button type="button" onclick="addPassenger()">Add Another Passenger</button>
+            <input type="submit" value="Book Ticket">
+        </form>
+    </div>
+    
+     <footer th:replace="header-footer :: footer"></footer>
+</body>
+</html>

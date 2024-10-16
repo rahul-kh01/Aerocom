@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Customer Service</title>
+    <link rel="stylesheet" href="/css/customer-service.css">
+</head>
+<body>
+
+    <header>
+        <h1>Customer Service</h1>
+    </header>
+
+    <main>
+        <!-- Contact Information -->
+        <section class="contact-info">
+            <h2>Contact Us</h2>
+            <p>Phone: 1-800-123-4567</p>
+            <p>Email: support@aerocom.com</p>
+            <p>Address: 123 Aviation Road, Suite 500, Flight City, 12345</p>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="faq">
+            <h2>Frequently Asked Questions (FAQ)</h2>
+            <details>
+                <summary>How can I book a ticket?</summary>
+                <p>You can book a ticket by visiting the 'Book Ticket' tab in your user dashboard after logging in.</p>
+            </details>
+            <details>
+                <summary>Can I cancel a ticket after booking?</summary>
+                <p>Yes, you can cancel a ticket from the 'Cancel Ticket' tab. A refund will be issued according to our cancellation policy.</p>
+            </details>
+            <!-- Add more FAQs as needed -->
+        </section>
+
+        <!-- Support Form -->
+        <section class="support-form">
+            <h2>Need Help?</h2>
+            
+            <form id="supportForm" onsubmit="handleFormSubmit(event)">
+                <label for="name">Your Name:</label>
+                <input type="text" id="name" name="name" required>
+                
+                <label for="mobNo">Mobile Number:</label>
+                <input type="text" id="mobNo" name="mobNo" required>
+                
+                <label for="issue-type">Issue Type:</label>
+                <select id="issue-type" name="issueType">
+                    <option value="booking">Booking Issue</option>
+                    <option value="cancellation">Cancellation</option>
+                    <option value="refund">Refund</option>
+                    <option value="other">Other</option>
+                </select>
+                
+                <label for="description">Description:</label>
+                <textarea id="description" name="description" rows="4" required></textarea>
+                
+                <button type="submit">Submit</button>
+            </form>
+        </section>
+
+        <!-- Working Hours -->
+        <section class="working-hours">
+            <h2>Working Hours</h2>
+            <p>Monday - Friday: 9 AM - 6 PM</p>
+            <p>Saturday: 10 AM - 4 PM</p>
+            <p>Sunday: Closed</p>
+        </section>
+<script type="text/javascript">
+    function handleFormSubmit(event) {
+        event.preventDefault(); // Prevent default form submission
+        alert("Your request for the given issue has been sent to our support team. They will reach you as soon as possible. Thank you...");
+        window.location.href = "/home"; // Redirect to the home page after the message
+    }
+</script>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Aerocom</p>
+    </footer>
+
+</body>
+</html>

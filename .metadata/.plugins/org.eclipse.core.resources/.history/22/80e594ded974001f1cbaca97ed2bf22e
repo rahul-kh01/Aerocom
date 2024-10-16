@@ -1,0 +1,182 @@
+package com.ac.in.controller;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import com.ac.in.dao.FlightRepository;
+import com.ac.in.dao.PassengerRepository;
+import com.ac.in.entity.Flight;
+import com.ac.in.entity.Passenger;
+import com.ac.in.entity.Ticket;
+import com.ac.in.service.PassengerService;
+import com.ac.in.service.TicketService;
+
+import jakarta.servlet.http.HttpSession;
+import jakarta.validation.Valid;
+
+@Controller
+public class ThymeleafController {
+
+	 @Autowired
+	 private PassengerRepository passengerRepository;
+	 
+	 @Autowired
+	 private FlightRepository flightRepository;
+	
+	 @Autowired
+	 private PassengerService passengerService;
+	 
+	 @Autowired
+	    private TicketService ticketService;
+	 
+    @GetMapping("/")
+    public String home() {
+        return "home"; // Returns home.html
+    }
+
+    @GetMapping("/search-flights")
+    public String searchFlights(@RequestParam("origin") String origin,
+                                @RequestParam("destination") String destination,
+                                @RequestParam("departure") String departure,
+                                Model model) {
+        List<Flight> flights = flightRepository.findByOriginAndDestinationAndDeparture(origin, destination, departure);
+        if (flights.isEmpty()) {
+            model.addAttribute("message", "No Flight Available For Given Date.");
+        } else {
+            model.addAttribute("flights", flights);
+        }
+        return "search-results"; // Return search-results.html
+    }
+    
+    @GetMapping("/search-results")
+    public String searchResultForm() {
+        return "search-results";
+    }
+    
+    
+    @GetMapping("/login")
+    public String showLoginForm() {
+        return "login";
+    }
+
+    @PostMapping("/login")
+    public String login(@RequestParam("mobNo") String mobNo,
+                        @RequestParam("password") String password,
+                        HttpSession session, Model model) {
+    	Passenger passenger = passengerRepository.findByMobNoAndPassword(mobNo, password);
+        
+        if (passenger != null) {
+            // Store the passenger details in the session
+            session.setAttribute("loggedInPassengerName", passenger.getName());
+            session.setAttribute("loggedInPassengerMobNo", passenger.getMobNo());
+            session.setAttribute("loggedInPassengerGender", passenger.getGender());
+            session.setAttribute("loggedInPassengerEmail", passenger.getEmail());
+            session.setAttribute("loggedInPassengerAge", passenger.getAge());
+
+            return "redirect:/user3"; }
+            else {
+            model.addAttribute("error", "Invalid credentials. Please try again.");
+            return "login"; // Redirect back to login page with error
+        }
+    }
+
+
+    @GetMapping("/signup")
+    public String signupForm(Model model) {
+        model.addAttribute("passenger", new Passenger());
+        return "signup"; // Returns signup.html
+    }
+
+    @PostMapping("/signup")
+    public String createPassenger(@Valid @ModelAttribute Passenger passenger, BindingResult result) {
+        if (result.hasErrors()) {
+            return "signup"; // returns to signup page with validation errors
+        }
+        passengerRepository.save(passenger); // Save passenger to the database
+        return "redirect:/"; // Redirect to home page
+    }
+    
+	/*
+	 * @GetMapping("/user") public String showUserPage() { return "user"; }
+	 */
+    
+    @GetMapping("/user3")
+    public String showUserPage(Model model, HttpSession session) {
+        // Get the passenger from the session
+       // Passenger passengerr = (Passenger) session.getAttribute("loggedInPassenger");
+    	 String passengerName = (String) session.getAttribute("loggedInPassengerName");
+    	 String passengerMobNo = (String) session.getAttribute("loggedInPassengerMobNo");
+    	 String passengerGender = (String) session.getAttribute("loggedInPassengerGender");
+    	 String passengerEmail = (String) session.getAttribute("loggedInPassengerEmail");
+    	 String passengerAge =  (String) session.getAttribute("loggedInPassengerAge");
+
+    	    if (passengerName == null) {
+    	        // Redirect to login if no passenger is found in session
+    	        return "redirect:/login";
+    	    }
+
+    	    // Add the passenger name to the model
+    	    model.addAttribute("passengerName", passengerName);
+    	    model.addAttribute("passengerMobNo", passengerMobNo);
+    	    model.addAttribute("passengerGender", passengerGender);
+    	    model.addAttribute("passengerEmail", passengerEmail);
+    	    model.addAttribute("passengerAge", passengerAge);
+    	    
+    	    // Render the user page
+    	    return "user3"; // Display user profile page
+    }
+
+    @GetMapping("/book-ticket")
+    public String showBookingForm() {
+        return "book-ticket";
+    }
+    
+    @PostMapping("/book-ticket")
+    public String bookTicket(@RequestParam("names") List<String> names,
+                             @RequestParam("gender") List<String> gender,
+                             @RequestParam("ages") List<Integer> ages,
+                             @RequestParam("mobiles") List<String> mobiles,
+                             @RequestParam("passengerTypes") List<String> passengerTypes,
+                             @RequestParam("flightNumbers") List<String> flightNumbers,
+                             @RequestParam("cabinClasses") List<String> cabinClasses,
+                             Model model) {
+
+        List<Ticket> tickets = new ArrayList<>();
+
+        int numberOfPassengers = names.size();
+        for (int i = 0; i < numberOfPassengers; i++) {
+            Ticket ticket = new Ticket();
+            
+            ticket.setName(names.get(i));
+            ticket.setGender(gender.get(i)); // Ensure that gender is handled correctly
+            ticket.setAge(ages.get(i));
+            ticket.setMobileNumber(mobiles.get(i));
+            ticket.setPassengerType(passengerTypes.get(i));
+            ticket.setFlightNumber(flightNumbers.get(i));
+            ticket.setCabinClass(cabinClasses.get(i));
+     
+            ticketService.save(ticket);
+            tickets.add(ticket);
+        }
+
+        model.addAttribute("message", "Tickets booked successfully!");
+        model.addAttribute("tickets", tickets);
+        return "success"; // Redirect to success.html
+    }
+    
+    
+    @GetMapping("/customer-service")
+    public String customerService() {
+        return "customer-service"; // Add customer-service.html later
+    }
+}
+

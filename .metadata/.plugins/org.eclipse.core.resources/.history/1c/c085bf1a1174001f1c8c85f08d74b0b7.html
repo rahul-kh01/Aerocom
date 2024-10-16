@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Dashboard</title>
+     <link rel="stylesheet" th:href="@{/css/user2.css}" />
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.10.3/dist/cdn.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="logo">
+                <img src="/images/erologo.png" alt="Logo">
+            </div>
+            <nav class="nav">
+                <ul>
+                    <li><a href="#">Dashboard</a></li>
+                    <li><a href="#">Profile</a></li>
+                    <li><a href="#">Book Ticket</a></li>
+                    <li><a href="#">MyBooking</a></li>
+                    <li><a href="#">Cancel Ticket</a></li>
+                    <li><a href="#">Ticket Status</a></li>
+                    <li><a href="#">Settings</a></li>
+                    <li><a href="#">Sign Out</a></li>
+                </ul>
+            </nav>
+            <footer class="help">
+                <a href="#">Help</a>
+            </footer>
+        </aside>
+
+        <!-- Main content -->
+        <main class="main-content">
+            <header>
+                <h1>Dashboard</h1>              
+                <p>Welcome, </p>
+                <button class="add-device-button">Log Out</button>
+            </header>
+
+            <!-- Dashboard Cards -->
+            <div class="dashboard-cards">
+                <div class="card" x-data="{ active: true }">
+                    <h2>Book Ticket</h2>
+                    <p>All doors are open</p>
+                    <p>Status: <span x-text="active ? 'Available' : 'Unlocked'"></span></p>
+                    <button @click="active = !active" x-text="active ? 'Book' : 'Unlock'"></button>
+                </div>
+                <div class="card">
+                    <h2>My Booking</h2>
+                   
+                    <button>Show Ticket</button>
+                </div>
+                <div class="card">
+                    <h2>Cancel ticket</h2>
+                
+                    <button>Cancel</button>
+                </div>
+                <div class="card">
+                    <h2>Flight Status</h2>
+                    <button>Status</button>
+                </div>
+            </div>
+
+            <!-- Live Camera -->
+            <section class="live-camera">
+                <h2>Flights</h2>
+                <div class="camera-feed">
+                    <img src="/images/aero.jpg" alt="Living Room">
+                     <img src="/images/aero2.jpg" alt="Living Room">
+                      <img src="/images/aero3.jpg" alt="Living Room">
+                       <img src="/images/aero4.jpg" alt="Living Room">
+                </div>
+            </section>
+        </main>
+    </div>
+</body>
+</html>
