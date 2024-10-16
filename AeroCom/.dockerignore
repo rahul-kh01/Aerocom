@@ -1,2 +1,6 @@
 target/
 .git/
+.idea/
+.metadata/
+.DS_Store
+.sonarlint/
