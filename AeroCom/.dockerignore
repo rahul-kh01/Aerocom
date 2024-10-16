@@ -1,6 +1,5 @@
 target/
-.git/
-.idea/
-.metadata/
-.DS_Store
-.sonarlint/
+*.git
+*.idea
+*.DS_Store
+*.mvn/wrapper/maven-wrapper.jar
